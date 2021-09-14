@@ -27,7 +27,9 @@ let sectionsPosition = [];
  */
 function scrollToSection(event){
     if (event.target.nodeName === 'LI'){
+        // get the y coordinate to be scrolled to 
         let scrollToSec = document.querySelector("#"+event.target.getAttribute("data-section-id")).getBoundingClientRect();
+        // use scrollBy method to smoothly scroll to section
         window.scrollBy({
             top: scrollToSec.y ,
             behavior: 'smooth',
@@ -36,10 +38,12 @@ function scrollToSection(event){
 }
 function activeClass(){
     let fromTop = window.scrollY;
+    // clear any element with active id if exist
     let prevActiveSection = document.querySelector("#active");
     if (prevActiveSection){
         prevActiveSection.id = "";
     }
+    // set id to active if section is in the viewport
     for(let i =0 ; i < sectionsPosition.length-1; i++){
         if (fromTop > sectionsPosition[i] && fromTop < sectionsPosition[i+1]){
             document.querySelectorAll('nav ul li')[i].id = "active";
@@ -58,39 +62,29 @@ function activeClass(){
 */
 
 // build the nav
-// function buildNavBar()
-// {
-//     const sectionsFragment = document.createDocumentFragment(); 
-
-//     for (section of sectionList) {
-//         sectionsPosition.push(section.getBoundingClientRect().y.toFixed(2));
-//         const newItem = document.createElement('a');
-//         newItem.innerText = section.getAttribute('data-nav');
-//         newItem.setAttribute('href','#'+section.id) ;
-
-//         sectionsFragment.appendChild(newItem);
-//     }
-
-//     navBar.appendChild(sectionsFragment); 
-// }
 function buildNavBar()
 {
     const sectionsFragment = document.createDocumentFragment(); 
 
     for (section of sectionList) {
+        // push the positions of the sections to be use later in the activeClass function
         sectionsPosition.push(section.getBoundingClientRect().y.toFixed(2));
+
+        // create the list items and set the attributes
         const newItem = document.createElement('li');
         newItem.innerText = section.getAttribute('data-nav');
         newItem.setAttribute('data-section-id',section.id) ;
 
+        // append to the document fragment
         sectionsFragment.appendChild(newItem);
     }
 
+    // appent to the navigation bar
     navBar.appendChild(sectionsFragment); 
 }
 
 // Add class 'active' to section when near top of viewport
-window.addEventListener("scroll",activeClass)
+window.addEventListener("scroll",activeClass);
 // Scroll to anchor ID using scrollTO event
 navBar.addEventListener('click',scrollToSection);
 
