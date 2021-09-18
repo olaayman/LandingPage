@@ -39,22 +39,18 @@ function scrollToSection(event){
 function activeClass(){
     let fromTop = window.scrollY;
     // clear any element with active id if exist
-    console.log('in active class');
-    console.log(fromTop);
     let prevActiveSection = document.querySelector("#active");
     let prevActivePageSec = document.querySelector('.your-active-class');
     if (prevActiveSection && prevActivePageSec){
-        console.log('active exist');
         prevActiveSection.id = "";
         prevActivePageSec.classList.remove('your-active-class');
     }
+
     // set id to active if section is in the viewport
     for(let i =0 ; i < sectionsPosition.length-1; i++){
         if (fromTop > sectionsPosition[i] && fromTop < sectionsPosition[i+1]){
             document.querySelectorAll('nav ul li')[i].id = "active";
             sectionList[i].classList.add('your-active-class');
-            console.log(sectionsPosition);
-            console.log(i)
             break;
         }
         else if (fromTop > sectionsPosition[sectionsPosition.length-1]){
@@ -79,7 +75,6 @@ function buildNavBar()
     for (section of sectionList) {
         // push the positions of the sections to be use later in the activeClass function
         sectionsPosition.push(section.offsetTop);
-        //sectionsPosition.push(section.getBoundingClientRect().y.toFixed(2));
         // create the list items and set the attributes
         const newItem = document.createElement('li');
         newItem.innerText = section.getAttribute('data-nav');
