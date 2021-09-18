@@ -1,5 +1,5 @@
 # LandingPage
-## Page Description 
+## Project Description 
 Web page with dynamic navigation bar and other features using HTML,CSS and javascript
 ### Navigation Bar
 * implemented using empty ul element.
@@ -9,5 +9,15 @@ Web page with dynamic navigation bar and other features using HTML,CSS and javas
 ### Sections Activation
 using ` window.addEventListener("scroll",activeClass);
  ` to highlight the element in the navigation bar dynamically with the scrolling accoriding to the current viewport.
-#### Contribute
-it is a project in the web development nanodegree by udacity and modified by Ola Ayman
+ 
+## how to run the project
+1. clone the project into your local PC.
+2. simply open the index.html file by dragging it to your browser.
+
+## technologies used in the project
+* HTML
+* css
+* javascript
+
+#### author's name
+It is a project in the web development nanodegree by udacity and modified by Ola Ayman.
